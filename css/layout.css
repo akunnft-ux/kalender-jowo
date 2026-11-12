@@ -1,0 +1,124 @@
+/* Layout: header, nav, footer, grid */
+
+.site-header {
+  background: var(--kertas);
+  border-bottom: 1px solid var(--garis);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--spasi);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spasi);
+}
+
+.brand {
+  font-family: var(--font-judul);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--sogan);
+}
+
+.theme-toggle {
+  font-size: 1.4rem;
+  padding: var(--spasi-sm);
+  border-radius: var(--radius-sm);
+  margin-left: auto;
+}
+
+.theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.nav-desktop {
+  display: none;
+  gap: var(--spasi-sm);
+}
+
+.nav-desktop a {
+  padding: var(--spasi-sm) var(--spasi);
+  border-radius: var(--radius-sm);
+  color: var(--teks-lembut);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.nav-desktop a:hover,
+.nav-desktop a.aktif {
+  background: var(--kertas);
+  color: var(--sogan);
+  text-decoration: none;
+}
+
+.nav-mobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--kertas);
+  border-top: 1px solid var(--garis);
+  display: flex;
+  justify-content: space-around;
+  padding: var(--spasi-xs) 0;
+  z-index: 50;
+  box-shadow: 0 -2px 10px rgba(60, 40, 20, 0.10);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.7rem;
+  color: var(--teks-lembut);
+  padding: var(--spasi-xs);
+  border-radius: var(--radius-sm);
+}
+
+.nav-item:hover,
+.nav-item.aktif {
+  color: var(--sogan);
+  background: rgba(91, 58, 30, 0.05);
+  text-decoration: none;
+}
+
+main#app {
+  padding: var(--spasi);
+  padding-bottom: 80px;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex: 1;
+  min-height: 40vh;
+}
+
+.site-footer {
+  background: var(--kertas);
+  border-top: 1px solid var(--garis);
+  padding: var(--spasi);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--teks-lembut);
+}
+
+.site-footer a {
+  color: var(--sogan-2);
+  text-decoration: underline;
+}
+
+@media (min-width: 640px) {
+  .nav-mobile {
+    display: none;
+  }
+  .nav-desktop {
+    display: flex;
+  }
+  main#app {
+    padding-bottom: var(--spasi-xl);
+  }
+}

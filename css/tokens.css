@@ -1,0 +1,60 @@
+/* Design tokens — nuansa Jawa yang tenang (sogan/krem/emas) */
+:root {
+  --krem: #F6EEDD;
+  --kertas: #FFFDF8;
+  --sogan: #5B3A1E;
+  --sogan-2: #7A5230;
+  --emas: #B8862B;
+  --marun: #7A1F1F;
+  --lumut: #3C5A3E;
+  --teks: #2B2118;
+  --teks-lembut: #5A4A38;
+  --garis: #E2D6BC;
+  --bayangan: 0 2px 10px rgba(60, 40, 20, 0.12);
+
+  --warna-legi: #8C9EAC;
+  --warna-pahing: #C47A3A;
+  --warna-pon: #B07CC6;
+  --warna-wage: #4E8C7A;
+  --warna-kliwon: #A65E3E;
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: var(--bayangan);
+  --font-sistem: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-judul: Georgia, "Times New Roman", serif;
+
+  --spasi-xs: 0.25rem;
+  --spasi-sm: 0.5rem;
+  --spasi: 1rem;
+  --spasi-lg: 1.5rem;
+  --spasi-xl: 2rem;
+
+  --bp-desktop: 640px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --krem: #1C1712;
+    --kertas: #241E17;
+    --teks: #F1E8D6;
+    --teks-lembut: #C9B89A;
+    --garis: #3B3226;
+    --emas: #D9A441;
+    --sogan: #E2C9A0;
+    --sogan-2: #A6815C;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  }
+}
+
+[data-tema="gelap"] {
+  --krem: #1C1712;
+  --kertas: #241E17;
+  --teks: #F1E8D6;
+  --teks-lembut: #C9B89A;
+  --garis: #3B3226;
+  --emas: #D9A441;
+  --sogan: #E2C9A0;
+  --sogan-2: #A6815C;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}

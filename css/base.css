@@ -1,0 +1,224 @@
+/* Reset & dasar */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sistem);
+  background: var(--krem);
+  color: var(--teks);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--sogan-2);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--sogan);
+  color: #fff;
+  padding: var(--spasi-sm) var(--spasi);
+  z-index: 10000;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--teks-lembut);
+  margin-bottom: var(--spasi-xs);
+}
+
+input[type="date"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: var(--spasi-sm);
+  border: 1px solid var(--garis);
+  border-radius: var(--radius-sm);
+  background: var(--kertas);
+  color: var(--teks);
+  font-size: 1rem;
+}
+
+input[type="date"]:focus,
+select:focus {
+  outline: 2px solid var(--emas);
+  outline-offset: 2px;
+}
+
+.eror {
+  color: var(--marun);
+  font-size: 0.85rem;
+  margin-top: var(--spasi-xs);
+  display: none;
+}
+
+.eror.aktif {
+  display: block;
+}
+
+.kartu {
+  background: var(--kertas);
+  border: 1px solid var(--garis);
+  border-radius: var(--radius);
+  padding: var(--spasi);
+  margin-bottom: var(--spasi);
+  box-shadow: var(--shadow);
+}
+
+.judul-halaman {
+  font-family: var(--font-judul);
+  font-size: 1.5rem;
+  margin: 0 0 var(--spasi) 0;
+  color: var(--sogan);
+}
+
+.tombol {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spasi-xs);
+  padding: var(--spasi-sm) var(--spasi);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid var(--garis);
+  background: var(--kertas);
+  color: var(--sogan);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tombol:hover {
+  background: var(--garis);
+  color: var(--sogan);
+  text-decoration: none;
+}
+
+.tombol:focus-visible {
+  outline: 2px solid var(--emas);
+  outline-offset: 2px;
+}
+
+.tombol-halus {
+  background: var(--sogan);
+  color: #fff;
+  border: none;
+}
+
+.tombol-halus:hover {
+  background: var(--sogan-2);
+}
+
+.grid-7 {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.sel-kalender {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spasi-xs);
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  position: relative;
+}
+
+.sel-kalender:hover {
+  background: rgba(91, 58, 30, 0.08);
+}
+
+.sel-kalender.aktif {
+  background: var(--sogan);
+  color: #fff;
+}
+
+.sel-kalender.hari-ini {
+  border: 2px solid var(--emas);
+}
+
+.angka-masehi {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.tgl-jawa {
+  font-size: 0.7rem;
+  margin-top: 2px;
+  opacity: 0.85;
+}
+
+.pasaran-singkat {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+  font-weight: 700;
+}
+
+.pasaran-legi { color: var(--warna-legi); }
+.pasaran-pahing { color: var(--warna-pahing); }
+.pasaran-pon { color: var(--warna-pon); }
+.pasaran-wage { color: var(--warna-wage); }
+.pasaran-kliwon { color: var(--warna-kliwon); }
+
+.titik-hari-besar {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--emas);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

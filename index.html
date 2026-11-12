@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pawukon Kita — Kalender Jawa & Primbon Praktis</title>
+  <meta name="description" content="Kalender Jawa, weton, neptu, dan selamatan wafat berbasis tradisi primbon Jawa. Tanpa ikatan, tanpa iklan, offline-capable.">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Pawukon Kita">
+  <meta property="og:description" content="Kalender Jawa & Primbon Praktis">
+  <meta property="og:type" content="website">
+  <noscript>Aplikasi ini memerlukan JavaScript untuk berjalan.</noscript>
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/pages.css">
+</head>
+<body>
+  <a href="#/kalender" class="skip-link">Langsung ke konten</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#/kalender" class="brand" aria-label="Beranda Pawukon Kita">Pawukon Kita</a>
+      <button class="theme-toggle" aria-pressed="false" aria-label="Ubah tema tampilan">🌓</button>
+      <nav class="nav-desktop" aria-label="Navigasi utama">
+        <a href="#/kalender">Kalender</a>
+        <a href="#/weton">Weton</a>
+        <a href="#/wafat">Wafat</a>
+        <a href="#/data">Data</a>
+        <a href="#/tentang">Tentang</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="nav-mobile" aria-label="Navigasi seluler">
+    <a href="#/kalender" class="nav-item">📅 Kalender</a>
+    <a href="#/weton" class="nav-item">🌙 Weton</a>
+    <a href="#/wafat" class="nav-item">⚰️ Wafat</a>
+    <a href="#/data" class="nav-item">📊 Data</a>
+    <a href="#/tentang" class="nav-item">ℹ️ Tentang</a>
+  </nav>
+
+  <main id="app" role="main"></main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="tahun-sekarang"></span> Pawukon Kita. Berbasis warisan budaya Jawa — bukan kepastian ilmiah.</p>
+    <a href="#/tentang">Tentang &amp; Disclaimer</a>
+  </footer>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

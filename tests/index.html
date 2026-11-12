@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Runner — Pawukon Kita</title>
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <style>
+    body { padding: var(--spasi); max-width: 700px; margin: 0 auto; font-family: var(--font-sistem); }
+    .log { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem; line-height: 1.4; max-height: 60vh; overflow-y: auto; border: 1px solid var(--garis); border-radius: var(--radius-sm); padding: var(--spasi); background: var(--kertas); }
+    .PASS { color: var(--lumut); }
+    .FAIL { color: var(--marun); font-weight: 700; }
+    .ringkasan { font-size: 1.1rem; margin-top: var(--spasi); padding: var(--spasi); border-radius: var(--radius-sm); text-align: center; }
+    .ringkasan.lulus { background: rgba(60,90,62,0.15); color: var(--lumut); border: 1px solid var(--lumut); }
+    .ringkasan.gagal { background: rgba(122,31,31,0.15); color: var(--marun); border: 1px solid var(--marun); }
+    a.kembali { display: inline-block; margin-top: var(--spasi); color: var(--sogan-2); text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1 class="judul-halaman">Test Runner §9 PRD</h1>
+  <p>Test runner browser tanpa library. Semua test vector §9.1–9.4 harus PASS.</p>
+  <div id="ringkasan" class="ringkasan">Menjalankan…</div>
+  <div id="log" class="log"></div>
+  <a class="kembali" href="../index.html">Kembali ke aplikasi</a>
+  <script type="module" src="./vectors.js"></script>
+</body>
+</html>
