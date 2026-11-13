@@ -1,3 +1,5 @@
+import { clearToJawaCache } from '../core/kalenderJawa.js';
+
 /* State penyimpanan lokal dengan try/catch (jika gagal, diam-diam diabaikan) */
 
 const PREF_THEMA = 'pawukon_tema';
@@ -50,6 +52,7 @@ export function terapkanTema(tema) {
 export function setModeJawa(mode) {
   state.modeJawa = mode;
   simpanModeJawa();
+  clearToJawaCache();
 }
 
 export function getModeJawa() {

@@ -16,8 +16,19 @@ export const ASAPON_ANCHOR = gToJDN(1936, 3, 24);
 export const WINDU_DAYS = 2835; // 8 tahun
 export const KURUP_DAYS = 42524; // 15 windu - 1 hari
 
-/* toJawa: Masehi (JDN) → Jawa */
+// Cache for toJawa computations
+const toJawaCache = new Map();
+
+function getToJawaCacheKey(jdn, mode) {
+  return `${jdn}:${mode}`;
+}
+
 export function toJawa(jdn, mode = 'sultan') {
+  const key = getToJawaCacheKey(jdn, mode);
+  if (toJawaCache.has(key)) {
+    return toJawaCache.get(key);
+  }
+  
   let start, tahunDasar;
 
   if (mode === 'aboge') {
@@ -52,13 +63,20 @@ export function toJawa(jdn, mode = 'sultan') {
     bi++;
   }
 
-  return {
+  const result = {
     tahun: tahunDasar + windu * 8 + yi,
     namaTahun: namaTahun(yi),
     bulan: bi + 1,
     namaBulan: namaBulan(bi + 1),
     tgl: n + 1,
   };
+  
+  toJawaCache.set(key, result);
+  return result;
+}
+
+export function clearToJawaCache() {
+  toJawaCache.clear();
 }
 
 /* jawaToJDN: Kebalikan toJawa. Digunakan untuk pendak & lompat tanggal Jawa. */

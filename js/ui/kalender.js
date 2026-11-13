@@ -1,4 +1,4 @@
-/* UI: Halaman Kalender Jawa (F1) */
+/* UI: Halaman Kalender Jawa (F1) — optimized */
 
 import { h, qs, qsa, on, delegate, hapusIsi } from '../util/dom.js';
 import { formatTanggalIndonesia, singkatPasaran, salinKePapanklip } from '../util/format.js';
@@ -15,6 +15,21 @@ let state = {
 };
 
 const HARI_SINGKAT = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
+
+// Cache for Javanese date computations per mode
+const jawaCache = new Map();
+
+function getJawaCached(jdn, mode) {
+  const key = `${jdn}:${mode}`;
+  if (!jawaCache.has(key)) {
+    jawaCache.set(key, jawaLengkap(jdn, mode));
+  }
+  return jawaCache.get(key);
+}
+
+function clearJawaCache() {
+  jawaCache.clear();
+}
 
 export function renderKalender(root) {
   hapusIsi(root);
@@ -72,8 +87,15 @@ function bangunKonten() {
 }
 
 let elemen;
+let keydownCleanup = null;
 
 function pasangEvent() {
+  // Clean up previous window listener
+  if (keydownCleanup) {
+    keydownCleanup.remove();
+    keydownCleanup = null;
+  }
+  
   const modeSelect = h('select', { className: 'pilih-mode', 'aria-label': 'Mode kalender Jawa' },
     h('option', { value: 'sultan' }, 'Sultan Agungan (Kraton / Asapon)'),
     h('option', { value: 'aboge' }, 'Aboge (komunitas Islam Aboge)')
@@ -105,7 +127,7 @@ function pasangEvent() {
     bukaDetail(jdn);
   });
 
-  on(window, 'keydown', (e) => {
+  keydownCleanup = on(window, 'keydown', (e) => {
     if (!elemen.panel.classList.contains('terbuka')) return;
     if (e.key === 'Escape') tutupDetail();
   });
@@ -120,8 +142,8 @@ function render() {
   // Hitung rentang bulan Jawa di bulan Masehi ini
   const jdnAwal = gToJDN(y, m, 1);
   const jdnAkhir = gToJDN(y, m, hariDalamBulan(y, m));
-  const jawaAwal = jawaLengkap(jdnAwal, mode);
-  const jawaAkhir = jawaLengkap(jdnAkhir, mode);
+  const jawaAwal = getJawaCached(jdnAwal, mode);
+  const jawaAkhir = getJawaCached(jdnAkhir, mode);
   elemen.infoMode.textContent = `Jawa: ${jawaAwal.namaBulan}–${jawaAkhir.namaBulan} ${jawaAkhir.tahun} ${jawaAkhir.namaTahun}  [Mode: ${mode === 'sultan' ? 'Sultan Agungan' : 'Aboge'}]`;
 
   // Elemen mode select sinkron
@@ -157,7 +179,7 @@ function render() {
 
     if (dalamBulan) {
       const angka = h('div', { className: 'angka-masehi' }, g.d);
-      const jawa = jawaLengkap(jdn, mode);
+      const jawa = getJawaCached(jdn, mode);
       const tglJawa = h('div', { className: 'tgl-jawa' }, `${jawa.tgl} ${singkatBulan(jawa.namaBulan)}`);
       const pasaranSpan = h('span', { className: `pasaran-singkat pasaran-${jawa.pasaran.toLowerCase()}` }, singkatPasaran(jawa.pasaran));
       const hariBesar = cariHariBesar(jawa.bulan, jawa.tgl);
@@ -237,7 +259,7 @@ function bukaDetail(jdn) {
   state.pilihJdn = jdn;
   render();
   const panel = elemen.panel;
-  const jawa = jawaLengkap(jdn, getModeJawa());
+  const jawa = getJawaCached(jdn, getModeJawa());
   const g = jdnToG(jdn);
   const hariBesar = cariHariBesar(jawa.bulan, jawa.tgl);
   const nogoT = nogoTahun(jawa.bulan);

@@ -4,7 +4,18 @@ import { h, qs, hapusIsi, on, delegate } from '../util/dom.js';
 import { escapeTeks } from '../util/format.js';
 import { formatTanggalIndonesia, salinKePapanklip } from '../util/format.js';
 import { gToJDN, jdnToG, hariOf, pasaranOf, JDN_MIN, JDN_MAX } from '../core/julian.js';
-import { infoWeton, wetonanBerikutnya, neptu } from '../core/weton.js';
+import { infoWeton, wetonanBerikutnya, neptu, jawaLengkap } from '../core/weton.js';
+
+// Cache for Javanese date computations
+const jawaCache = new Map();
+
+function getJawaCached(jdn) {
+  const key = `${jdn}`;
+  if (!jawaCache.has(key)) {
+    jawaCache.set(key, jawaLengkap(jdn));
+  }
+  return jawaCache.get(key);
+}
 
 let state = { jdn: null, maghrib: false };
 
