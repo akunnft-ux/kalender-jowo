@@ -66,14 +66,17 @@ export function hitungPendak(tahunJawa, bulanJawa, tglJawa, modeJawa = 'sultan')
       const jdn = jawaToJDN(tahunJawa + tambah, bulanJawa, tglJawa, modeJawa);
       const g = jdnToG(jdn);
       const w = infoWeton(jdn);
+      const malam = infoMalamPelaksanaan(jdn);
       hasil.push({
         tambah,
         tahun: tahunJawa + tambah,
         bulan: bulanJawa,
         tgl: tglJawa,
+        jdn,
         tanggal: `${g.y}-${String(g.m).padStart(2, '0')}-${String(g.d).padStart(2, '0')}`,
         tanggalIndo: formatTanggalIndonesia(g.y, g.m, g.d),
         weton: `${w.hari} ${w.pasaran}`,
+        malamPelaksanaan: malam,
       });
     } catch (e) {
       // Tanggal 30 mungkin tidak ada di bulan target → skip

@@ -227,7 +227,12 @@ function renderTambahan(container, jdnEfektif) {
     container.appendChild(h('p', { className: 'label-detail' }, 'Mendak (pendak): tanggal & bulan Jawa wafat yang sama pada tahun Jawa +1 / +2'));
     const grid = h('div', { className: 'rincian-waktu' });
     pendak.forEach((pd) => {
-      grid.appendChild(itemWaktu(`Pendak ${pd.tambah}`, `${pd.tanggalIndo} — ${pd.weton}`));
+      const item = h('div', { className: 'box-waktu' },
+        h('div', { className: 'label-detail' }, `Pendak ${pd.tambah}`),
+        h('div', { className: 'nilai-detail' }, `${pd.tanggalIndo} — ${pd.weton}`),
+        h('div', { className: 'label-detail', style: 'margin-top:4px;font-size:0.85rem;color:var(--teks-lembut);' }, `Malam pelaksanaan: ${pd.malamPelaksanaan.hari}, ${pd.malamPelaksanaan.tanggal} (${pd.malamPelaksanaan.weton})`)
+      );
+      grid.appendChild(item);
     });
     container.appendChild(grid);
   }
