@@ -141,10 +141,11 @@ function render() {
   let jdnCursor = jdnMingguAwal - hariMingguAwal;
 
   const selesai = jdnAkhir;
-  const selesaiMinggu = hariIndex(selesai);
+  // Akhir grid: Minggu (index 6) dari minggu yang berisi tanggal terakhir bulan
+  const hariSelesai = hariIndex(selesai); // 0=Senin, 6=Minggu
+  const jdnAkhirGrid = selesai + (6 - hariSelesai);
 
-  let jdn = jdnCursor;
-  while (jdn <= selesai || hariIndex(jdn) !== 0) {
+  for (let jdn = jdnCursor; jdn <= jdnAkhirGrid; jdn++) {
     const g = jdnToG(jdn);
     const dalamBulan = g.y === y && g.m === m;
     const sel = h('div', {
@@ -171,8 +172,6 @@ function render() {
     }
 
     elemen.grid.appendChild(sel);
-    jdn++;
-    if (hariIndex(jdn) === 0 && jdn > selesai) break;
   }
 
   // Jika panel detail terbuka untuk tanggal yang masih valid, pertahankan
