@@ -66,7 +66,10 @@ function bangunKonten() {
   section.appendChild(form);
 
   const akordion = h('div', { className: 'akordion' },
-    h('div', { className: 'akordion-header', onclick: toggleAkordion }, 'Cara hitung & rumus sarma'),
+    h('div', { className: 'akordion-header', onclick: toggleAkordion },
+      'Cara hitung & rumus sarma',
+      h('span', { className: 'akordion-ikon' }, '▼')
+    ),
     h('div', { className: 'akordion-isi', id: 'akordion-isi' },
       h('p', {}, 'Hari wafat dihitung sebagai hari ke-1. Jadi hari ke-N = tanggal wafat + (N − 1).'),
       h('p', {}, 'Rumus sarma tradisional (tusaro, masarma, rosarma, nemsarma) menyatakan hasil yang sama dengan cara hari ke-a dan pasaran ke-b, dihitung inklusif dari weton wafat. Untuk 7/40/100/1000 hari, kedua cara selalu identik.'),
@@ -290,5 +293,7 @@ function cetak() {
 
 function toggleAkordion() {
   const isi = qs('#akordion-isi');
+  const akordion = qs('.akordion');
   isi.classList.toggle('terbuka');
+  akordion.classList.toggle('terbuka');
 }

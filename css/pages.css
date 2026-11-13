@@ -278,6 +278,18 @@
   cursor: pointer;
   font-weight: 600;
   color: var(--sogan);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.akordion-ikon {
+  font-size: 0.7rem;
+  transition: transform 0.2s ease;
+}
+
+.akordion.terbuka .akordion-ikon {
+  transform: rotate(180deg);
 }
 
 .akordion-isi {
