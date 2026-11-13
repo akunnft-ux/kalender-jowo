@@ -53,19 +53,19 @@
 .daftar-hari {
   display: flex;
   justify-content: space-around;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--teks-lembut);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: var(--spasi-xs);
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
 }
 
 .grid-kalender {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
-  margin-bottom: var(--spasi);
+  gap: 1px;
+  margin-bottom: var(--spasi-sm);
 }
 
 .panel-detail {

@@ -159,20 +159,21 @@ select:focus {
 }
 
 .sel-kalender {
-  aspect-ratio: 1;
+  min-height: 52px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--spasi-xs);
-  font-size: 0.85rem;
+  padding: 2px 4px;
+  font-size: 0.75rem;
   border-radius: var(--radius-sm);
   cursor: pointer;
   position: relative;
+  gap: 1px;
 }
 
 .sel-kalender:hover {
-  background: rgba(91, 58, 30, 0.08);
+  background: rgba(91, 58, 30, 0.06);
 }
 
 .sel-kalender.aktif {
@@ -181,26 +182,27 @@ select:focus {
 }
 
 .sel-kalender.hari-ini {
-  border: 2px solid var(--emas);
+  border: 1px solid var(--emas);
 }
 
 .angka-masehi {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  line-height: 1.1;
 }
 
 .tgl-jawa {
-  font-size: 0.7rem;
-  margin-top: 2px;
+  font-size: 0.62rem;
   opacity: 0.85;
+  line-height: 1.1;
 }
 
 .pasaran-singkat {
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 1px;
+  letter-spacing: 0.3px;
   font-weight: 700;
+  line-height: 1.1;
 }
 
 .pasaran-legi { color: var(--warna-legi); }
@@ -211,10 +213,10 @@ select:focus {
 
 .titik-hari-besar {
   position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 6px;
-  height: 6px;
+  top: 2px;
+  right: 2px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: var(--emas);
 }

@@ -167,8 +167,6 @@ function render() {
       if (hariBesar) {
         sel.appendChild(h('span', { className: 'titik-hari-besar', title: hariBesar.nama }));
       }
-    } else {
-      sel.appendChild(h('span', { className: 'angka-masehi muted' }, ''));
     }
 
     elemen.grid.appendChild(sel);
