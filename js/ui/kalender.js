@@ -257,7 +257,13 @@ function lompak() {
 
 function bukaDetail(jdn) {
   state.pilihJdn = jdn;
-  render();
+  
+  // Update class aktif pada cell yang dipilih (tanpa rebuild grid)
+  const prevAktif = elemen.grid.querySelector('.sel-kalender.aktif');
+  if (prevAktif) prevAktif.classList.remove('aktif');
+  const baruAktif = elemen.grid.querySelector(`[data-jdn="${jdn}"]`);
+  if (baruAktif) baruAktif.classList.add('aktif');
+
   const panel = elemen.panel;
   const jawa = getJawaCached(jdn, getModeJawa());
   const g = jdnToG(jdn);
