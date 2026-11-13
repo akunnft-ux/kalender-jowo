@@ -1,60 +1,97 @@
-/* Design tokens — nuansa Jawa yang tenang (sogan/krem/emas) */
+/* Design tokens — nuansa Jawa yang anggun (sogan/krem/emas terpilih) */
 :root {
-  --krem: #F6EEDD;
-  --kertas: #FFFDF8;
-  --sogan: #5B3A1E;
-  --sogan-2: #7A5230;
-  --emas: #B8862B;
-  --marun: #7A1F1F;
-  --lumut: #3C5A3E;
-  --teks: #2B2118;
-  --teks-lembut: #5A4A38;
-  --garis: #E2D6BC;
-  --bayangan: 0 2px 10px rgba(60, 40, 20, 0.12);
+  /* Warna dasar — terinspirasi batik sogan klasik, dikaji ulang untuk kesan modern */
+  --krem: #F2E8D9;           /* krem hangat, tidak terlalu kuning */
+  --kertas: #FDFBF5;         /* putih kertas tulis, sedik hangat */
+  --sogan: #4A321A;          /* sogan tua — cokelat batik yang dalam, elegan */
+  --sogan-sedang: #6B4A2D;   /* sogan sedang — untuk aksen sekunder */
+  --sogan-muda: #9C7B5A;     /* sogan muda — border, garis halus */
+  --emas: #B58B3C;           /* emas batik — hangat, tidak mencolok */
+  --emas-muda: #D4A85C;      /* emas terang — hover, focus */
+  --marun: #6B2525;          /* merah marun tua — peringatan, hari besar */
+  --hijau-tua: #2D4A35;      /* hijau lumut tua — keseimbangan, selamatan */
+  --teks: #1F1A14;           /* hitam lunak — tidak kaku */
+  --teks-lembut: #5D5345;    /* abu cokelat — sekunder */
+  --garis: #E8DCC8;          /* garis halus — batas kartu, tabel */
+  --garis-tegas: #D4C4A8;    /* garis lebih tegas — fokus, aktif */
+  --bayangan: 0 2px 12px rgba(74, 50, 26, 0.08);
+  --bayangan-tegas: 0 4px 20px rgba(74, 50, 26, 0.12);
 
-  --warna-legi: #8C9EAC;
-  --warna-pahing: #C47A3A;
-  --warna-pon: #B07CC6;
-  --warna-wage: #4E8C7A;
-  --warna-kliwon: #A65E3E;
+  /* Pasaran — warna tradisional disederhanakan, harmonis */
+  --warna-legi: #6B7D8C;     /* abu biru muda — Legi */
+  --warna-pahing: #B86B3A;   /* terakota — Pahing */
+  --warna-pon: #8A6B9C;      /* ungu redup — Pon */
+  --warna-wage: #4A7C6A;     /* hijau salam — Wage */
+  --warna-kliwon: #9C5A3A;   /* cokelat merah — Kliwon */
 
-  --radius: 14px;
-  --radius-sm: 8px;
+  /* Radius & shadow */
+  --radius: 12px;
+  --radius-sm: 6px;
+  --radius-lg: 16px;
   --shadow: var(--bayangan);
-  --font-sistem: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-judul: Georgia, "Times New Roman", serif;
+  --shadow-lg: var(--bayangan-tegas);
 
+  /* Tipografi */
+  --font-sistem: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-judul: "DM Serif Display", Georgia, "Times New Roman", serif;
+
+  /* Spasi */
   --spasi-xs: 0.25rem;
   --spasi-sm: 0.5rem;
   --spasi: 1rem;
   --spasi-lg: 1.5rem;
   --spasi-xl: 2rem;
+  --spasi-2xl: 3rem;
 
+  /* Breakpoint */
   --bp-desktop: 640px;
 }
 
+/* Dark mode — menjaga nuansa hangat, tidak biru/abu kaku */
 @media (prefers-color-scheme: dark) {
   :root {
-    --krem: #1C1712;
-    --kertas: #241E17;
-    --teks: #F1E8D6;
-    --teks-lembut: #C9B89A;
-    --garis: #3B3226;
-    --emas: #D9A441;
-    --sogan: #E2C9A0;
-    --sogan-2: #A6815C;
-    --shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+    --krem: #1A1612;
+    --kertas: #221D17;
+    --teks: #F5EDE3;
+    --teks-lembut: #BFA88A;
+    --garis: #3D3326;
+    --garis-tegas: #5C4D3A;
+    --sogan: #D4B890;
+    --sogan-sedang: #B8946C;
+    --sogan-muda: #8C6D4A;
+    --emas: #D4A85C;
+    --emas-muda: #E8C07A;
+    --marun: #C45A5A;
+    --hijau-tua: #5AA87A;
+    --bayangan: 0 2px 12px rgba(0, 0, 0, 0.35);
+    --bayangan-tegas: 0 4px 20px rgba(0, 0, 0, 0.45);
+    --warna-legi: #8AA8C0;
+    --warna-pahing: #D4946A;
+    --warna-pon: #B894D4;
+    --warna-wage: #7AC8A8;
+    --warna-kliwon: #D48A6A;
   }
 }
 
 [data-tema="gelap"] {
-  --krem: #1C1712;
-  --kertas: #241E17;
-  --teks: #F1E8D6;
-  --teks-lembut: #C9B89A;
-  --garis: #3B3226;
-  --emas: #D9A441;
-  --sogan: #E2C9A0;
-  --sogan-2: #A6815C;
-  --shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  --krem: #1A1612;
+  --kertas: #221D17;
+  --teks: #F5EDE3;
+  --teks-lembut: #BFA88A;
+  --garis: #3D3326;
+  --garis-tegas: #5C4D3A;
+  --sogan: #D4B890;
+  --sogan-sedang: #B8946C;
+  --sogan-muda: #8C6D4A;
+  --emas: #D4A85C;
+  --emas-muda: #E8C07A;
+  --marun: #C45A5A;
+  --hijau-tua: #5AA87A;
+  --bayangan: 0 2px 12px rgba(0, 0, 0, 0.35);
+  --bayangan-tegas: 0 4px 20px rgba(0, 0, 0, 0.45);
+  --warna-legi: #8AA8C0;
+  --warna-pahing: #D4946A;
+  --warna-pon: #B894D4;
+  --warna-wage: #7AC8A8;
+  --warna-kliwon: #D48A6A;
 }

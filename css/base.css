@@ -20,7 +20,7 @@ body {
 }
 
 a {
-  color: var(--sogan-2);
+  color: var(--sogan-sedang);
   text-decoration: none;
 }
 
@@ -149,7 +149,7 @@ select:focus {
 }
 
 .tombol-halus:hover {
-  background: var(--sogan-2);
+  background: var(--sogan-sedang);
 }
 
 .grid-7 {
@@ -173,7 +173,7 @@ select:focus {
 }
 
 .sel-kalender:hover {
-  background: rgba(91, 58, 30, 0.06);
+  background: rgba(74, 50, 26, 0.06);
 }
 
 .sel-kalender.aktif {

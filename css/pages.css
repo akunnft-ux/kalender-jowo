@@ -185,7 +185,7 @@
 .nilai-neptu {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--sogan-2);
+  color: var(--sogan-sedang);
 }
 
 .label-neptu {
@@ -341,7 +341,7 @@
   border: 1px solid var(--garis);
   border-radius: var(--radius);
   padding: var(--spasi);
-  background: rgba(91, 58, 30, 0.05);
+  background: rgba(74, 50, 26, 0.05);
 }
 
 .catatan-mentah {
