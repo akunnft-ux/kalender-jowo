@@ -1,7 +1,7 @@
 /* UI: Halaman Kalender Jawa (F1) — optimized */
 
-import { h, qs, qsa, on, delegate, hapusIsi } from '../util/dom.js';
-import { formatTanggalIndonesia, singkatPasaran, salinKePapanklip } from '../util/format.js';
+import { h, qs, on, delegate, hapusIsi } from '../util/dom.js';
+import { formatTanggalIndonesia, singkatPasaran } from '../util/format.js';
 import { getModeJawa, setModeJawa } from '../util/state.js';
 import { gToJDN, jdnToG, hariOf, pasaranOf, hariIndex, JDN_MIN, JDN_MAX } from '../core/julian.js';
 import { jawaLengkap, nogoTahun } from '../core/weton.js';
@@ -66,8 +66,6 @@ function bangunKonten() {
 
   const grid = h('div', { className: 'grid-kalender', role: 'grid', 'aria-label': 'Kalender Jawa bulanan' });
 
-  const panel = h('div', { className: 'panel-detail', id: 'panel-detail' });
-
   const tombolHariIni = h('button', {
     className: 'tombol tombol-halus',
     'aria-label': 'Lihat hari ini',
@@ -81,21 +79,13 @@ function bangunKonten() {
   section.appendChild(infoMode);
   section.appendChild(daftarHari);
   section.appendChild(grid);
-  section.appendChild(panel);
 
-  return { section, header, infoMode, grid, panel, tombolHariIni };
+  return { section, header, infoMode, grid, tombolHariIni };
 }
 
 let elemen;
-let keydownCleanup = null;
 
 function pasangEvent() {
-  // Clean up previous window listener
-  if (keydownCleanup) {
-    keydownCleanup.remove();
-    keydownCleanup = null;
-  }
-  
   const modeSelect = h('select', { className: 'pilih-mode', 'aria-label': 'Mode kalender Jawa' },
     h('option', { value: 'sultan' }, 'Sultan Agungan (Kraton / Asapon)'),
     h('option', { value: 'aboge' }, 'Aboge (komunitas Islam Aboge)')
@@ -122,15 +112,17 @@ function pasangEvent() {
   );
   elemen.header.appendChild(barLompat);
 
-  delegate(elemen.grid, '.sel-kalender', 'click', (e) => {
-    const jdn = Number(e.currentTarget.dataset.jdn);
-    bukaDetail(jdn);
-  });
+  // Click handler dihapus - panel detail tidak dipakai
+  // delegate(elemen.grid, '.sel-kalender', 'click', (e) => {
+  //   const jdn = Number(e.currentTarget.dataset.jdn);
+  //   bukaDetail(jdn);
+  // });
 
-  keydownCleanup = on(window, 'keydown', (e) => {
-    if (!elemen.panel.classList.contains('terbuka')) return;
-    if (e.key === 'Escape') tutupDetail();
-  });
+  // keydown handler dihapus - tidak ada panel detail
+  // keydownCleanup = on(window, 'keydown', (e) => {
+  //   if (!elemen.panel.classList.contains('terbuka')) return;
+  //   if (e.key === 'Escape') tutupDetail();
+  // });
 }
 
 function render() {
@@ -235,7 +227,6 @@ function keHariIni() {
   state.d = hoje.getDate();
   state.pilihJdn = gToJDN(state.y, state.m, state.d);
   render();
-  bukaDetail(state.pilihJdn);
 }
 
 function lompak() {
@@ -252,93 +243,4 @@ function lompak() {
   state.d = d;
   state.pilihJdn = jdn;
   render();
-  bukaDetail(jdn);
-}
-
-function bukaDetail(jdn) {
-  state.pilihJdn = jdn;
-  
-  // Update class aktif pada cell yang dipilih (tanpa rebuild grid)
-  const prevAktif = elemen.grid.querySelector('.sel-kalender.aktif');
-  if (prevAktif) prevAktif.classList.remove('aktif');
-  const baruAktif = elemen.grid.querySelector(`[data-jdn="${jdn}"]`);
-  if (baruAktif) baruAktif.classList.add('aktif');
-
-  const panel = elemen.panel;
-  const jawa = getJawaCached(jdn, getModeJawa());
-  const g = jdnToG(jdn);
-  const hariBesar = cariHariBesar(jawa.bulan, jawa.tgl);
-  const nogoT = nogoTahun(jawa.bulan);
-
-  hapusIsi(panel);
-  panel.classList.add('terbuka');
-
-  panel.appendChild(h('h2', { className: 'judul-detail' }, 'Detail Hari'));
-  panel.appendChild(h('div', { className: 'grid-detail' },
-    itemDetail('Tanggal Masehi', formatTanggalIndonesia(g.y, g.m, g.d)),
-    itemDetail('Hari / Pasaran', `${jawa.hari} ${jawa.pasaran}`),
-    itemDetail('Weton', jawa.weton),
-    itemDetail('Neptu', `${jawa.neptu}`),
-    itemDetail('Tanggal Jawa', `${jawa.tgl} ${jawa.namaBulan} ${jawa.tahun} ${jawa.namaTahun}`),
-    itemDetail('Nogo Dino', `${jawa.nogoDino} (joyo: ${jawa.joyoDino})`),
-    itemDetail('Nogo Tahun', `${nogoT} (bulan ${jawa.namaBulan})`),
-    hariBesar ? itemDetail('Hari Besar', hariBesar.nama) : null
-  ));
-
-  const aksi = h('div', { className: 'tombol-aksi' });
-  const btnSalin = h('button', {
-    className: 'tombol tombol-halus',
-    onclick: async () => {
-      const teks = `*${jawa.weton}*, ${formatTanggalIndonesia(g.y, g.m, g.d)} = ${jawa.tgl} ${jawa.namaBulan} ${jawa.tahun} ${jawa.namaTahun}. Neptu ${jawa.neptu}. Nogo dino: ${jawa.nogoDino}.`;
-      try {
-        await salinKePapanklip(teks);
-        btnSalin.textContent = 'Disalin!';
-        setTimeout(() => btnSalin.textContent = 'Salin Ringkasan', 1200);
-      } catch (e) {
-        prompt('Salin teks ini:', teks);
-      }
-    }
-  }, 'Salin Ringkasan');
-
-  const btnWafat = h('button', {
-    className: 'tombol tombol-halus',
-    onclick: () => bukaWafatDariTanggal(jdn, jawa.hari, jawa.pasaran, g.y, g.m, g.d),
-  }, 'Hitung Wafat dari Tanggal Ini');
-
-  aksi.appendChild(btnSalin);
-  aksi.appendChild(btnWafat);
-  panel.appendChild(aksi);
-
-  // Scroll ke panel di layar kecil
-  if (window.innerWidth < 640) {
-    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-}
-
-function tutupDetail() {
-  state.pilihJdn = null;
-  render();
-  elemen.panel.classList.remove('terbuka');
-  hapusIsi(elemen.panel);
-}
-
-function itemDetail(label, nilai) {
-  if (!nilai) return null;
-  return h('div', { className: 'item-detail' },
-    h('div', { className: 'label-detail' }, label),
-    h('div', { className: 'nilai-detail' }, nilai)
-  );
-}
-
-function bukaWafatDariTanggal(jdn, hari, pasaran, y, m, d) {
-  // Kirim ke halaman wafat via hash param
-  const tanggal = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-  window.location.hash = `#/wafat?d=${tanggal}&m=s`;
-}
-
-export function onHashChange(params) {
-  // Jika ada parameter tanggal dari kalender, buka wafat
-  if (params.d) {
-    // Ditangani oleh ui/wafat.js
-  }
 }

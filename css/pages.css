@@ -68,25 +68,6 @@
   margin-bottom: var(--spasi-sm);
 }
 
-.panel-detail {
-  background: var(--kertas);
-  border: 1px solid var(--garis);
-  border-radius: var(--radius);
-  padding: var(--spasi);
-  box-shadow: var(--shadow);
-  display: none;
-  animation: slideUp 0.25s ease;
-}
-
-.panel-detail.terbuka {
-  display: block;
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 .judul-detail {
   font-family: var(--font-judul);
   font-size: 1.25rem;
