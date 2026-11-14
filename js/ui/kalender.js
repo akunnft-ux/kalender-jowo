@@ -6,6 +6,7 @@ import { getModeJawa, setModeJawa } from '../util/state.js';
 import { gToJDN, jdnToG, hariOf, pasaranOf, hariIndex, JDN_MIN, JDN_MAX } from '../core/julian.js';
 import { jawaLengkap, nogoTahun } from '../core/weton.js';
 import { cariHariBesar } from '../data/hariBesar.js';
+import { cariLiburNasional, isLiburNasional } from '../data/liburNasional.js';
 
 let state = {
   y: new Date().getFullYear(),
@@ -175,11 +176,19 @@ function render() {
       const tglJawa = h('div', { className: 'tgl-jawa' }, `${jawa.tgl} ${singkatBulan(jawa.namaBulan)}`);
       const pasaranSpan = h('span', { className: `pasaran-singkat pasaran-${jawa.pasaran.toLowerCase()}` }, singkatPasaran(jawa.pasaran));
       const hariBesar = cariHariBesar(jawa.bulan, jawa.tgl);
+      const liburNasional = cariLiburNasional(y, g.m, g.d);
       sel.appendChild(angka);
       sel.appendChild(tglJawa);
       sel.appendChild(pasaranSpan);
       if (hariBesar) {
         sel.appendChild(h('span', { className: 'titik-hari-besar', title: hariBesar.nama }));
+      }
+      if (liburNasional) {
+        const isCuti = liburNasional.cuti === true;
+        sel.appendChild(h('span', {
+          className: `libur-nasional ${isCuti ? 'cuti-bersama' : ''}`,
+          title: liburNasional.nama
+        }, isCuti ? 'C' : 'L'));
       }
     }
 

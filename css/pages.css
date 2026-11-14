@@ -68,6 +68,52 @@
   margin-bottom: var(--spasi-sm);
 }
 
+/* Libur Nasional */
+.libur-nasional {
+  display: inline-block;
+  font-size: 0.55rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 1px 4px;
+  border-radius: var(--radius-sm);
+  margin-top: 1px;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  background: var(--marun);
+  color: #fff;
+}
+
+.libur-nasional.cuti-bersama {
+  background: var(--emas);
+  color: #1F1A14;
+}
+
+/* Highlight cell dengan libur nasional */
+.sel-kalender:has(.libur-nasional) {
+  background: rgba(107, 37, 37, 0.04);
+}
+
+.sel-kalender:has(.libur-nasional.cuti-bersama) {
+  background: rgba(181, 139, 60, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  .sel-kalender:has(.libur-nasional) {
+    background: rgba(196, 90, 90, 0.12);
+  }
+  .sel-kalender:has(.libur-nasional.cuti-bersama) {
+    background: rgba(212, 168, 92, 0.15);
+  }
+}
+
+[data-tema="gelap"] .sel-kalender:has(.libur-nasional) {
+  background: rgba(196, 90, 90, 0.12);
+}
+
+[data-tema="gelap"] .sel-kalender:has(.libur-nasional.cuti-bersama) {
+  background: rgba(212, 168, 92, 0.15);
+}
+
 .judul-detail {
   font-family: var(--font-judul);
   font-size: 1.25rem;
