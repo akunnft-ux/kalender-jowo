@@ -79,11 +79,43 @@ export const LIBUR_2025 = [
   { bulan: 12, tgl: 26, nama: 'Cuti Bersama Natal', cuti: true },
 ];
 
+// Tahun 2027 (berdasarkan SKB 3 Menteri Nomor 1205, 3, 2 Tahun 2026)
+export const LIBUR_2027 = [
+  { bulan: 1, tgl: 1, nama: 'Tahun Baru 2027 Masehi' },
+  { bulan: 1, tgl: 5, nama: 'Isra Mi\'raj Nabi Muhammad SAW 1448 Hijriah' },
+  { bulan: 2, tgl: 6, nama: 'Tahun Baru Imlek 2578 Kongzili' },
+  { bulan: 3, tgl: 8, nama: 'Hari Suci Nyepi (Tahun Baru Saka 1949)' },
+  { bulan: 3, tgl: 10, nama: 'Idulfitri 1448 Hijriah' },
+  { bulan: 3, tgl: 11, nama: 'Idulfitri 1448 Hijriah (kedua)' },
+  { bulan: 3, tgl: 26, nama: 'Wafat Yesus Kristus (Jumat Agung)' },
+  { bulan: 3, tgl: 28, nama: 'Kebangkitan Yesus Kristus (Paskah)' },
+  { bulan: 5, tgl: 1, nama: 'Hari Buruh Internasional' },
+  { bulan: 5, tgl: 6, nama: 'Kenaikan Yesus Kristus' },
+  { bulan: 5, tgl: 17, nama: 'Iduladha 1448 Hijriah' },
+  { bulan: 5, tgl: 20, nama: 'Hari Raya Waisak 2571 BE' },
+  { bulan: 6, tgl: 1, nama: 'Hari Lahir Pancasila' },
+  { bulan: 6, tgl: 6, nama: '1 Muharam Tahun Baru Islam 1449 Hijriah' },
+  { bulan: 8, tgl: 15, nama: 'Maulid Nabi Muhammad SAW' },
+  { bulan: 8, tgl: 17, nama: 'Proklamasi Kemerdekaan Republik Indonesia' },
+  { bulan: 12, tgl: 25, nama: 'Kelahiran Yesus Kristus (Natal)' },
+  { bulan: 12, tgl: 26, nama: 'Isra Mi\'raj Nabi Muhammad SAW 1449 Hijriah' },
+  // Cuti bersama (berdasarkan SKB 3 Menteri 2026)
+  { bulan: 2, tgl: 5, nama: 'Cuti Bersama Tahun Baru Imlek 2578', cuti: true },
+  { bulan: 3, tgl: 9, nama: 'Cuti Bersama Idulfitri 1448 H', cuti: true },
+  { bulan: 3, tgl: 12, nama: 'Cuti Bersama Idulfitri 1448 H', cuti: true },
+  { bulan: 3, tgl: 15, nama: 'Cuti Bersama Idulfitri 1448 H', cuti: true },
+  { bulan: 3, tgl: 25, nama: 'Cuti Bersama Wafat Yesus Kristus', cuti: true },
+  { bulan: 5, tgl: 18, nama: 'Cuti Bersama Iduladha 1448 H', cuti: true },
+  { bulan: 5, tgl: 19, nama: 'Cuti Bersama Hari Raya Waisak 2571 BE', cuti: true },
+  { bulan: 12, tgl: 24, nama: 'Cuti Bersama Kelahiran Yesus Kristus', cuti: true },
+];
+
 /* Gabungkan libur tetap + per tahun */
 export function getLiburNasional(tahun) {
   const liburTahun = {
     2024: LIBUR_2024,
     2025: LIBUR_2025,
+    2027: LIBUR_2027,
   }[tahun] || [];
 
   // Selalu tambahkan libur tetap (beberapa sudah ada di data tahunan, tapi aman)
